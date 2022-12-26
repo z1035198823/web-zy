@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>10</title>
+		<script type="text/javascript">
+			function a1() {
+				alert
+			}
+			window.onload = function() {
+				var otxt = document.getElementById("txt");
+				if (document.all) {
+					otxt.onpropertychange = function() {
+						alert
+					}
+				} else {
+					otxt.oninput = function() {
+						alert
+					}
+				}
+			}
+		</script>
+	</head>
+	<style>
+		#div1,
+		#div2 {
+			display: inline-block;
+			margin-top: 250px;
+			margin-left: 200px;
+		}
+
+		#a {
+			width: 500px;
+			height: 500px;
+			background-color: red;
+		}
+
+		#b {
+			width: 500px;
+			height: 500px;
+			background-color: blue ;
+		}
+
+		input {
+			width: 490px;
+			height: 20px;
+		}
+	</style>
+	<body>
+		<div id="div1">
+			<div id="a"></div>
+			<input type="text" onblur="a1()" />
+		</div>
+		<div id="div2">
+			<div id="b"></div>
+			<input type="text" id="txt" />
+		</div>
+	</body>
+</html>
