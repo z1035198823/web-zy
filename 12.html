@@ -1,0 +1,535 @@
+<html>
+
+	<head>
+		<title>注册界面</title>
+		<link rel="stylesheet" href="css/register.css" />
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: linear-gradient(200deg, #55ff7f, #00ffff);
+				overflow: hidden;
+			}
+
+			.mima {
+				position: relative;
+			}
+
+			.mima input:valid~span {
+				display: block;
+			}
+
+			.mima span {
+				position: absolute;
+				right: 5px;
+				top: 50%;
+				transform: translateY(-50%);
+				display: none;
+			}
+
+			.registerBox {
+				position: relative;
+				z-index: 1;
+				background-color: #fff;
+				border-radius: 15px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				width: 350px;
+				height: 700px;
+				box-shadow: 0 5px 20px rgba(255, 255, 127, 0.1);
+				box-sizing: border-box;
+			}
+
+			h2 {
+				font-size: 26px;
+				margin: 30px auto 30px auto;
+			}
+
+			.registerBox select {
+				width: 280px;
+				height: 30px;
+				display: block;
+				border: 2em;
+				text-indent: 10px;
+				border-bottom: 1px solid #ddd;
+				outline: none;
+				margin: 30px auto;
+			}
+
+			.registerBox input {
+				width: 280px;
+				height: 30px;
+				display: block;
+				border: 2em;
+				text-indent: 10px;
+				border-bottom: 1px solid #ddd;
+				outline: none;
+				margin: 30px auto;
+			}
+
+			.registerBox button {
+				width: 280px;
+				height: 40px;
+				margin: 35px auto 40px auto;
+				border: none;
+				background: linear-gradient(-200deg, #00557f, #aa5500);
+				border-radius: 15px;
+				color: #fff;
+				font-weight: bold;
+				letter-spacing: 8px;
+				cursor: pointer;
+				transition: 0.5s;
+			}
+
+			.registerBox button:hover {
+				background: linear-gradient(-200deg, #ffff00, #00ff00);
+				background-position-x: -280px;
+			}
+
+			.title {
+				display: block;
+				margin-left: 10px;
+				margin-top: -10px;
+			}
+
+			.title a {
+				color: plum;
+				text-decoration: none;
+			}
+
+			.title a:hover {
+				color: #ff55ff;
+			}
+
+			.zhi {
+				color: #ff5500;
+			}
+
+			ul li {
+				position: absolute;
+				border: 1px solid #fff;
+				background-color: #fff;
+				width: 30px;
+				height: 30px;
+				list-style: none;
+				opacity: 0;
+			}
+
+			.square li {
+				top: 40vh;
+				left: 70vw;
+				animation: square 10s linear infinite;
+			}
+
+			.square li:nth-child(2) {
+				top: 80vh;
+				left: 10vw;
+				animation-delay: 2s;
+			}
+
+			.square li:nth-child(3) {
+				top: 80vh;
+				left: 85vw;
+				animation-delay: 4s;
+			}
+
+			.square li:nth-child(4) {
+				top: 10vh;
+				left: 70vw;
+				animation-delay: 6s;
+			}
+
+			.square li:nth-child(5) {
+				top: 10vh;
+				left: 10vw;
+				animation-delay: 8s;
+			}
+
+			.circle li {
+				bottom: 0;
+				left: 15vw;
+				animation: circle 10s linear infinite;
+			}
+
+			.circle li:nth-child(2) {
+				left: 35vw;
+				animation-delay: 2s;
+			}
+
+			.circle li:nth-child(3) {
+				left: 55vw;
+				animation-delay: 4s;
+			}
+
+			.circle li:nth-child(4) {
+				left: 75vw;
+				animation-delay: 6s;
+			}
+
+			.circle li:nth-child(5) {
+				left: 90vw;
+				animation-delay: 8s;
+			}
+
+			@keyframes square {
+				0% {
+					transform: scale(0) rotateY(0deg);
+					opacity: 1;
+				}
+
+				100% {
+					transform: scale(5) rotateY(1000deg);
+					opacity: 0;
+				}
+			}
+
+			@keyframes circle {
+				0% {
+					transform: scale(0) rotateY(0deg);
+					opacity: 1;
+					bottom: 0;
+					border-radius: 0;
+				}
+
+				100% {
+					transform: scale(5) rotateY(1000deg);
+					opacity: 0;
+					bottom: 90vh;
+					border-radius: 50%;
+				}
+			}
+			.container {
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				right: 50px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			.bubble {
+				width: 100%;
+				height: 100%;
+				background: radial-gradient(circle at 75% 30%, #fff 5px, #00ff00 8%,
+						#5555ff 60%, #ffff00 100%);
+				border-radius: 50%;
+				box-shadow: inset 0 0 20px #fff,
+					inset 10px 0 46px #eaf5fc,
+					inset 80px 0 60px #efcde6,
+					inset -20px -60px 100px #f9f6de,
+					inset 0 50px 140px #f9f6de,
+					0 0 90px #fff;
+				animation: bubble 4s ease-in-out infinite;
+			}
+
+			.shadow {
+				background-color: rgba(255, 170, 127, 0.1);
+				width: 150px;
+				height: 40px;
+				border-radius: 50%;
+				position: absolute;
+				left: 50%;
+				margin-left: -75px;
+				bottom: -100px;
+				filter: blur(1px);
+				animation: shadow 4s ease-in-out infinite;
+			}
+
+			@keyframes bubble {
+
+				0%,
+				100% {
+					transform: translateY(0);
+				}
+
+				50% {
+					transform: translateY(-80px);
+				}
+			}
+
+			@keyframes shadow {
+
+				0%,
+				100% {
+					transform: scale(0.5);
+				}
+
+				50% {
+					transform: scale(1);
+				}
+			}
+			.box_err {
+				position: relative;
+				font-size: 12px;
+				right: -60px;
+				top: -15px;
+				color: red;
+				margin: -35px;
+			}
+
+			.name_box {
+				position: relative;
+				font-size: 12px;
+				color: red;
+				right: -60px;
+				top: -15px;
+				margin: -35px;
+			}
+
+			.dui {
+				position: relative;
+				left: 10px;
+				top: -30px;
+			}
+
+			.cuo {
+				position: relative;
+				left: 10px;
+				top: -32px;
+			}
+
+			.cuo_name {
+				position: relative;
+				left: 10px;
+				top: -32px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="bubble"></div>
+			<div class="shadow"></div>
+		</div>
+		<div class="registerBox">
+			<h1>Register</h1>
+			<form>
+				<input type="text" name="id" placeholder="学号" id="学号">
+				<div class="cuo_name" style="display: none" id="cuo_name"><img src="images/cuo.png"></div>
+				<div class="name_box" style="display: none" id="name_box">
+					<div class="name_err" style="display: none" id="name_err">不能为空</div>
+					<div class="name_chang" style="display: none" id="name_chang">ID长度为11位</div>
+					<div class="name_zi" style="display: none" id="name_zi">学号应全为数字</div>
+				</div>
+				<input type="text" name="uname" placeholder="真实姓名" id="uname">
+				<div class="mima">
+					<input type="password" name="password" placeholder="6-16位字母和数字" id="pwd">
+					<span><img src="images/close.png" id="eye"></span>
+				
+				</div>
+				<div class="dui" style="display: none" id="dui"><img src="images/dui.jpg"></div>
+				<div class="cuo" style="display: none" id="cuo"><img src="images/cuo.png"></div>
+				<div class="box_err" style="display: none" id="box_err">
+					<div style="display: none" id="none_err">不能为空</div>
+					<div style="display: none" id="password_err">长度至少为6位且为数字和字母的组合</div>
+					<div style="display: none" id="chang_err">最大长度为16</div>
+				</div>
+				<input type="text" name="roomNumber" placeholder="房间号," id="room">
+				<input type="text" name="gender" placeholder="性别,M代表男性,F代表女性" id="gen">
+				<input type="text" name="birth" placeholder="生日,例如2002-09-11" id="bir">
+				<input type="text" name="tel" placeholder="11位电话号码" id="tel">
+				<input type="text" name="email" placeholder="电子邮箱" id="mail">
+				<div class="title">
+					<span class="zhi">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<a href="<%=request.getContextPath()%>/index.jsp">登录</a>
+				</div>
+				<button class="btn" type="button" id="btn" onclick="clickSignup()">Sign Up</button>
+			</form>
+		</div>
+		<div class="square">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="circle">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<script>
+			const id = document.getElementById('id');
+			const uname = document.getElementById('uname');
+			const pwd = document.getElementById('pwd');
+			const room = document.getElementById('room');
+			const gen = document.getElementById('gen');
+			const bir = document.getElementById('bir');
+			const tel = document.getElementById('tel');
+			const mail = document.getElementById('mail');
+			const eye = document.getElementById('eye');
+			let flag = 0;
+			eye.onclick = function() {
+				if (flag === 0) {
+					pwd.type = 'text';
+					eye.src = 'images/open.png';
+					flag = 1;
+				} else {
+					pwd.type = 'password';
+					eye.src = 'images/close.png';
+					flag = 0;
+				}
+			}
+			//获取用户名
+			id.onblur = checkUsername;
+
+			function checkUsername() {
+				var username = id.value.trim();
+				var reg = /^\d{11}$/;
+				var reg1 = /^[0-9]*$/
+				var flag = reg.test(username);
+				var flag1 = reg1.test(username);
+				var len1 = 0;
+				for (var i = 0; i < username.length; i++) {
+					len1 += 1;
+				}
+
+				if (flag) {
+					document.getElementById("cuo_name").style.display = 'none';
+					document.getElementById("name_box").style.display = 'none';
+				} else if (username == "") {
+					document.getElementById("name_box").style.display = '';
+					document.getElementById("name_err").style.display = '';
+					document.getElementById("cuo_name").style.display = '';
+					document.getElementById("name_zi").style.display = 'none';
+					document.getElementById("name_chang").style.display = 'none';
+				} else if (flag1 == false) {
+					document.getElementById("name_box").style.display = '';
+					document.getElementById("name_err").style.display = 'none';
+					document.getElementById("cuo_name").style.display = '';
+					document.getElementById("name_zi").style.display = '';
+					document.getElementById("name_chang").style.display = 'none';
+				} else if (len1 < 11 || len1 > 11) {
+					document.getElementById("name_box").style.display = '';
+					document.getElementById("name_err").style.display = 'none';
+					document.getElementById("cuo_name").style.display = '';
+					document.getElementById("name_zi").style.display = 'none';
+					document.getElementById("name_chang").style.display = '';
+				}
+
+				return flag;
+			}
+
+			//获取密码
+			pwd.onblur = checkPassword;
+
+			function checkPassword() {
+				var password = pwd.value.trim();
+				var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+				var flag = reg.test(password);
+				var len = 0;
+				for (var i = 0; i < password.length; i++) {
+					len += 1;
+				}
+				if (flag) {
+					document.getElementById("box_err").style.display = 'none';
+					document.getElementById("dui").style.display = 'none';
+					document.getElementById("cuo").style.display = 'none';
+				} else if (password == "") {
+					document.getElementById("box_err").style.color = 'red';
+					document.getElementById("box_err").style.display = '';
+					document.getElementById("none_err").style.display = '';
+					document.getElementById("password_err").style.display = 'none';
+					document.getElementById("chang_err").style.display = 'none';
+					document.getElementById("dui").style.display = 'none';
+					document.getElementById("cuo").style.display = '';
+				} else if (len > 20) {
+					document.getElementById("box_err").style.color = 'red';
+					document.getElementById("box_err").style.display = '';
+					document.getElementById("chang_err").style.display = '';
+					document.getElementById("none_err").style.display = 'none';
+					document.getElementById("password_err").style.display = 'none';
+					document.getElementById("dui").style.display = 'none';
+					document.getElementById("cuo").style.display = '';
+				} else {
+					document.getElementById("box_err").style.color = 'red';
+					document.getElementById("box_err").style.display = '';
+					document.getElementById("chang_err").style.display = 'none';
+					document.getElementById("none_err").style.display = 'none';
+					document.getElementById("password_err").style.display = '';
+					document.getElementById("dui").style.display = 'none';
+					document.getElementById("cuo").style.display = '';
+				}
+
+				return flag;
+			}
+
+			pwd.onclick = function() {
+				document.getElementById("box_err").style.display = '';
+				document.getElementById("password_err").style.display = '';
+				document.getElementById("none_err").style.display = '';
+				document.getElementById("chang_err").style.display = '';
+				document.getElementById("dui").style.display = '';
+				document.getElementById("box_err").style.color = '#757575'
+				document.getElementById("cuo").style.display = 'none';
+			}
+
+			function createXmlHttpRequest() {
+				if (window.ActiveXObject) {
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				} else if (window.XMLHttpRequest) {
+					return new XMLHttpRequest();
+				}
+			}
+
+			xmlHttp = createXmlHttpRequest();
+			xmlHttp.onreadystatechange = ajaxResponse;
+
+			function ajaxResponse() {
+				if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+					const result = xmlHttp.responseText;
+					if (result === "success") {
+						alert("注册成功");
+						if (xmlHttp.getResponseHeader("REDIRECT") === 'null') {
+							window.location.href = "<%=request.getContextPath()%>/index.jsp";
+						} else {
+							window.location.href = xmlHttp.getResponseHeader("REDIRECT");
+						}
+					} else {
+						alert("注册失败");
+					}
+				}
+			}
+
+			function clickSignup() {
+				const idValue = id.value;
+				const unameValue = uname.value;
+				const pwdValue = pwd.value;
+				const roomValue = room.value;
+				const genValue = gen.value;
+				const birValue = bir.value;
+				const telValue = tel.value;
+				const mailValue = mail.value;
+				const params = {};
+				params['id'] = idValue;
+				params['uname'] = unameValue;
+				params['pwd'] = pwdValue;
+				params['room'] = roomValue;
+				params['gen'] = genValue;
+				params['bir'] = birValue;
+				params['tel'] = telValue;
+				params['mail'] = mailValue;
+				xmlHttp.open('post', 'http://localhost:8080/Siamese/register'); //端口号
+				xmlHttp.setRequestHeader('Content-Type', 'application/json');
+				xmlHttp.send(JSON.stringify(params));
+			}
+		</script>
+	</body>
+
+</html>
